@@ -2,19 +2,52 @@
   "name": "personalLibrary",
   "version": "1.0.0",
   "description": "Track your personal library",
-  "main": "index.js",
+  "main": "./public/bundle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "webpack-watch": "webpack -w",
+    "express-server": "node ./server",
+    "dev": "concurrent --kill-others \"npm run webpack-watch\" \"npm run express-server\"",
+    "test": "mocha --compilers js:babel-core/register \"test/**/*@(.js|.jsx)\"",
+    "test:watch": "npm run test -- --watch"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/blyster962/personalLibrary.git"
   },
-  "keywords": ["library", "books", "collection"],
+  "keywords": [
+    "library",
+    "books",
+    "collection"
+  ],
   "author": "Brian Lyster",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/blyster962/personalLibrary/issues"
   },
-  "homepage": "https://github.com/blyster962/personalLibrary#readme"
+  "homepage": "https://github.com/blyster962/personalLibrary#readme",
+  "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.10.2",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.9.0",
+    "chai": "^3.5.0",
+    "concurrently": "^2.1.0",
+    "mocha": "^2.5.3"
+  },
+  "dependencies": {
+    "babel-loader": "^6.2.4",
+    "express": "^4.14.0",
+    "material-ui": "^0.15.1",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-redux": "^4.4.5",
+    "react-tap-event-plugin": "^0.2.2",
+    "redux": "^3.5.2",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.1.0",
+    "webpack": "^1.13.1"
+  }
 }
