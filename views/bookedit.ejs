@@ -4,32 +4,37 @@
   <% include headerStuff %>
 </head>
 <body>
-  <% include pageHeader %>
-  <form method='POST' action='/books/save'>
-    <input type="hidden" name="docreate" value="<%= docreate ? 'create' : 'update' %>">
-    <p><span class="label">Key:</span>
-    <% if (docreate) { %>
-      <input type='text' name='bookkey' value='' />
-    <% } else { %>
-      <%= book ? bookkey : "" %>
-      <input type="hidden" name="bookkey" value='<%= book ? bookkey : "" %>' />
-    <% } %>
-    </p>
-    <p><span class="label">ISBN:</span>
-    <% if (docreate) { %>
-      <input type="text" name="isbn" value="<%= book ? book.isbn : '' %>" />
-    <% } else { %>
-      <input type="text" name="isbn" value="<%= book ? book.isbn : '' %>" readonly />
-    <% } %>
-    </p>
-    <p><span class="label">Title:</span> <input type="text" name="title" value="<%= book ? book.title : '' %>" /></p>
-    <p><span class="label">SubTitle:</span> <input type="text" name="subtitle" value="<%= book ? book.subtitle : '' %>" /></p>
-    <p><span class="label">Author:</span> <input type="text" name="author" value="<%= book ? book.author : '' %>" /></p>
-    <p><span class="label">Genre:</span> <input type="text" name="genre" value="<%= book ? book.genre : '' %>" /></p>
-    <p><span class="label">Been Read?:</span> <input type="text" name="read" value="<%= book ? book.read : 'No' %>" /></p>
-    <br />
-    <input type="submit" value="Submit" />
-  </form>
-  <% include footer %>
+  <div class="container-fluid">
+    <% include pageHeader %>
+
+    <div class="row"><div class="col-xs-12">
+      <form method='POST' action='/books/save'>
+        <input type="hidden" name="docreate" value="<%= docreate ? 'create' : 'update' %>">
+        <p>Key:
+        <% if (docreate) { %>
+          <input type='text' name='bookkey' value='' />
+        <% } else { %>
+          <%= book ? bookkey : "" %>
+          <input type="hidden" name="bookkey" value='<%= book ? bookkey : "" %>' />
+        <% } %>
+        </p>
+        <p>ISBN:
+        <% if (docreate) { %>
+          <input type="text" name="isbn" value="<%= book ? book.isbn : '' %>" />
+        <% } else { %>
+          <input type="text" name="isbn" value="<%= book ? book.isbn : '' %>" readonly />
+        <% } %>
+        </p>
+        <p>Title: <input type="text" name="title" value="<%= book ? book.title : '' %>" /></p>
+        <p>SubTitle: <input type="text" name="subtitle" value="<%= book ? book.subtitle : '' %>" /></p>
+        <p>Author: <input type="text" name="author" value="<%= book ? book.author : '' %>" /></p>
+        <p>Genre: <input type="text" name="genre" value="<%= book ? book.genre : '' %>" /></p>
+        <p>Been Read?: <input type="text" name="read" value="<%= book ? book.read : 'No' %>" /></p>
+        <br />
+        <input type="submit" value="Submit" />
+      </form>
+    </div></div>
+    <% include footer %>
+  </div>
 </body>
 </html>

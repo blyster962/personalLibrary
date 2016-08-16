@@ -6,16 +6,17 @@ body {
 
 header {
   background: #eeeeee;
-  padding: 5px;
+}
+header.page-header h1 {
+  margin-top: 5px;
+}
+header.page-header .breadcrumb {
+  margin-bottom: 5px;
+}
+header.page-header a.btn-primary {
+  float: right;
 }
 
 a {
   color: #00B7FF;
 }
-
-.label{
-  display: inline-block;
-  width:90px;
-  text-align: right;
-}
-*/

@@ -4,20 +4,26 @@
   <% include headerStuff %>
 </head>
 <body>
-  <% include pageHeader %>
-  <p><span class="label">ISBN:</span> <%= book ? book.isbn : '' %></p>
-  <p><span class="label">Title:</span> <%= book ? book.title : '' %></p>
-  <p><span class="label">SubTitle:</span> <%= book ? book.subtitle : '' %></p>
-  <p><span class="label">Author:</span> <%= book ? book.author : '' %></p>
-  <p><span class="label">Genre:</span> <%= book ? book.genre : '' %></p>
-  <p><span class="label">Been Read?:</span> <%= book ? book.read : '' %></p>
-  <% if (bookkey) { %>
-    <hr />
-    <p>
-      <a href="/books/destroy?key=<%= bookkey %>">Delete</a>
-      <a href="/books/edit?key=<%= bookkey %>">Edit</a>
-    </p>
-  <% } %>
-  <% include footer %>
+  <div class="container-fluid">
+    <% include pageHeader %>
+
+    <div class="row"><div class="col-xs-12">
+      <p>ISBN: <%= book ? book.isbn : '' %></p>
+      <p>Title: <%= book ? book.title : '' %></p>
+      <p>SubTitle: <%= book ? book.subtitle : '' %></p>
+      <p>Author: <%= book ? book.author : '' %></p>
+      <p>Genre: <%= book ? book.genre : '' %></p>
+      <p>Been Read?: <%= book ? book.read : '' %></p>
+    </div></div>
+
+
+      <% if (bookkey) { %>
+        <div class="row"><div class="btn-group col-sm-12">
+          <a class="btn btn-default" href="/books/destroy?key=<%= bookkey %>" role="button">Delete</a>
+          <a class="btn btn-default" href="/books/edit?key=<%= bookkey %>" role="button">Edit</a>
+        </div></div>
+      <% } %>
+    <% include footer %>
+  </div>
 </body>
 </html>

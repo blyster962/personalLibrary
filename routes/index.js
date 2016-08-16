@@ -16,7 +16,13 @@ router.get('/', function(req, res, next) {
     return Promise.all(keyPromises);
   })
   .then(booklist => {
-    res.render('index', { title: 'Books', booklist: booklist });
+    res.render('index', {
+      title: 'Books',
+      booklist: booklist,
+      breadcrumbs: [
+        { href: '/', text: 'Home' }
+      ]
+    });
   })
   .catch(err => { next(err); });
 });

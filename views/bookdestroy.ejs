@@ -4,14 +4,19 @@
   <% include headerStuff %>
 </head>
 <body>
-  <% include pageHeader %>
-  <form method='POST' action='/books/destroy/confirm'>
-    <input type="hidden" name="bookkey" value='<%= book ? bookkey : "" %>'>
-    <p>Delete <%= book.title %>?</p>
-    <br />
-    <input type="submit" value="Delete" />
-    <a href="/notes/view?key=<%= bookkey %>">Cancel</a>
-  </form>
-  <% include footer %>
+  <div class="container-fluid">
+    <% include pageHeader %>
+
+    <div class="row"><div class="col-xs-12">
+      <form method='POST' action='/books/destroy/confirm'>
+        <input type="hidden" name="bookkey" value='<%= book ? bookkey : "" %>'>
+        <p>Delete <%= book.title %>?</p>
+        <br />
+        <input type="submit" value="Delete" />
+        <a href="/notes/view?key=<%= bookkey %>">Cancel</a>
+      </form>
+    </div></div>
+    <% include footer %>
+  </div>
 </body>
 </html>

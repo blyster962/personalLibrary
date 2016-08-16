@@ -11,7 +11,12 @@ router.get('/add', (req, res, next) => {
     title: 'Add a Book',
     docreate: true,
     bookkey: '',
-    book: undefined
+    book: undefined,
+    breadcrumbs: [
+      { href: '/', text: 'Home' },
+      { active: true, text: "Add Book" }
+    ],
+    hideAddNote: true
   });
 });
 
@@ -35,7 +40,11 @@ router.get('/view', (req, res, next) => {
     res.render('bookview', {
       title: book ? book.title : '',
       bookkey: req.query.key,
-      book: book
+      book: book,
+      breadcrumbs: [
+        { href: '/', text: 'Home' },
+        { active: true, text: book.title }
+      ]
     });
   })
   .catch(err => { next(err); });
@@ -48,7 +57,12 @@ router.get('/edit', (req, res, next) => {
       title: book ? ('Edit ' + book.isbn) : "Add a Book",
       docreate: false,
       bookkey: req.query.key,
-      book: book
+      book: book,
+      breadcrumbs: [
+        { href: '/', text: 'Home' },
+        { active: true, text: book.title }
+      ],
+      hideAddNote: true
     });
   })
   .catch(err => { next(err); });
@@ -60,7 +74,11 @@ router.get('/destroy', (req, res, next) => {
     res.render('bookdestroy', {
       title: book ? book.title : '',
       bookkey: req.query.key,
-      book: book
+      book: book,
+      breadcrumbs: [
+        { href: '/', text: 'Home' },
+        { active: true, text: "Delete Book" }
+      ]
     });
   })
   .catch(err => { next(err); });
