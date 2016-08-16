@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include headerStuff %>
+  </head>
+  <body>
+    <% include pageHeader %>
+    <% if (booklist.length > 0) { %>
+    <ul><%
+    for (var book of booklist) {
+      %><li><%= book.key %>:
+      <a href="/books/view?key=<%= book.key %>"><%= book.title %></a>
+    </li><%
+    }
+    %></ul>
+    <% } %>
+    <% include footer %>
+  </body>
+</html>

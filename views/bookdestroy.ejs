@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include headerStuff %>
+</head>
+<body>
+  <% include pageHeader %>
+  <form method='POST' action='/books/destroy/confirm'>
+    <input type="hidden" name="bookkey" value='<%= book ? bookkey : "" %>'>
+    <p>Delete <%= book.title %>?</p>
+    <br />
+    <input type="submit" value="Delete" />
+    <a href="/notes/view?key=<%= bookkey %>">Cancel</a>
+  </form>
+  <% include footer %>
+</body>
+</html>

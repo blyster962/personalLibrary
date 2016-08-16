@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include headerStuff %>
+</head>
+<body>
+  <% include pageHeader %>
+  <p><span class="label">ISBN:</span> <%= book ? book.isbn : '' %></p>
+  <p><span class="label">Title:</span> <%= book ? book.title : '' %></p>
+  <p><span class="label">SubTitle:</span> <%= book ? book.subtitle : '' %></p>
+  <p><span class="label">Author:</span> <%= book ? book.author : '' %></p>
+  <p><span class="label">Genre:</span> <%= book ? book.genre : '' %></p>
+  <p><span class="label">Been Read?:</span> <%= book ? book.read : '' %></p>
+  <% if (bookkey) { %>
+    <hr />
+    <p>
+      <a href="/books/destroy?key=<%= bookkey %>">Delete</a>
+      <a href="/books/edit?key=<%= bookkey %>">Edit</a>
+    </p>
+  <% } %>
+  <% include footer %>
+</body>
+</html>
