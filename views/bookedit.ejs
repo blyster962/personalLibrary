@@ -10,28 +10,45 @@
     <div class="row"><div class="col-xs-12">
       <form method='POST' action='/books/save'>
         <input type="hidden" name="docreate" value="<%= docreate ? 'create' : 'update' %>">
-        <p>Key:
-        <% if (docreate) { %>
-          <input type='text' name='bookkey' value='' />
-        <% } else { %>
-          <%= book ? bookkey : "" %>
-          <input type="hidden" name="bookkey" value='<%= book ? bookkey : "" %>' />
-        <% } %>
-        </p>
-        <p>ISBN:
-        <% if (docreate) { %>
-          <input type="text" name="isbn" value="<%= book ? book.isbn : '' %>" />
-        <% } else { %>
-          <input type="text" name="isbn" value="<%= book ? book.isbn : '' %>" readonly />
-        <% } %>
-        </p>
-        <p>Title: <input type="text" name="title" value="<%= book ? book.title : '' %>" /></p>
-        <p>SubTitle: <input type="text" name="subtitle" value="<%= book ? book.subtitle : '' %>" /></p>
-        <p>Author: <input type="text" name="author" value="<%= book ? book.author : '' %>" /></p>
-        <p>Genre: <input type="text" name="genre" value="<%= book ? book.genre : '' %>" /></p>
-        <p>Been Read?: <input type="text" name="read" value="<%= book ? book.read : 'No' %>" /></p>
-        <br />
-        <input type="submit" value="Submit" />
+
+        <div class="form-group">
+          <label for="bookkey">Key</label>
+          <% if (docreate) { %>
+            <input class="form-control" type='text' id="bookkey" name='bookkey' value='' placeholder="Key" />
+          <% } else { %>
+            <%= book ? bookkey : "" %>
+            <input type="hidden" id='bookkey' name="bookkey" value='<%= book ? bookkey : "" %>' />
+          <% } %>
+        </div>
+        <div class="form-group">
+          <label for="isbn">ISBN</label>
+          <% if (docreate) { %>
+            <input class="form-control" type="text" id="isbn" name="isbn" placeholder="ISBN" value="<%= book ? book.isbn : '' %>" />
+          <% } else { %>
+            <input class="form-control" type="text" id="isbn" name="isbn" value="<%= book ? book.isbn : '' %>" readonly />
+          <% } %>
+        </div>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input class="form-control" type="text" id="title" name="title" placeholder="Title" value="<%= book ? book.title : '' %>" />
+        </div>
+        <div class="form-group">
+          <label for="subtitle">SubTitle</label>
+          <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Subtitle" value="<%= book ? book.subtitle : '' %>" />
+        </div>
+        <div class="form-group">
+          <label for="author">Author</label>
+          <input type="text" class="form-control" id="author" name="author" placeholder="Author" value="<%= book ? book.author : '' %>" />
+        </div>
+        <div class="form-group">
+          <label for="genre">Genre</label>
+          <input type="text" class="form-control" id="genre" name="genre" placeholder="Genre" value="<%= book ? book.genre : '' %>" />
+        </div>
+        <div class="form-group">
+          <label for="read">Been Read?</label>
+          <input type="text" class="form-control" id="read" name="read" placeholder="Read" value="<%= book ? book.read : 'No' %>" />
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
       </form>
     </div></div>
     <% include footer %>
