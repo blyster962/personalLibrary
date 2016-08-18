@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
     for (var key of keylist) {
       keyPromises.push(
         books.read(key).then(book => {
-          return { key: book.key, title: book.title };
+          return { key: book.key, title: book.title, author: book.author };
         })
       );
     }
