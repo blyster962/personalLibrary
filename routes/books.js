@@ -1,9 +1,13 @@
 'use strict';
 
 var util = require('util');
+var path = require('path');
 var express = require('express');
 var router = express.Router();
-var books = require('../models/books-memory');
+var books = require(process.env.BOOKS_MODEL ? path.join('..', process.env.BOOKS_MODEL) : '../models/books-fs');
+
+const log = require('debug')('books:router-books');
+const error = require('debug')('books:error');
 
 // Add Book.
 router.get('/add', (req, res, next) => {

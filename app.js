@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var fileStreamRotator = require('file-stream-rotator');
 
 // Uncaught Exceptions
-var error = require('debug')('notes:error');
+var error = require('debug')('books:error');
 process.on('uncaughtException', function(err) {
   error("I've crashed!!! - " + (err.stack || err));
 });

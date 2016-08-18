@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var books = require('../models/books-memory');
+var path = require('path');
+var books = require(process.env.BOOKS_MODEL ? path.join('..', process.env.BOOKS_MODEL) : '../models/books-memory');
+
+const log = require('debug')('books:router-home');
+const error = require('debug')('books:error');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
