@@ -39,3 +39,4 @@ jspm_packages
 # Data directories
 book-fs-data
 books.levelup
+pl.sqlite3

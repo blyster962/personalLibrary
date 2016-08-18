@@ -7,7 +7,9 @@
     "server1": "PORT=3001 node ./bin/www",
     "server2": "PORT=3002 node ./bin/www",
     "start-fs": "BOOKS_MODEL=models/book-fs node ./bin/www",
-    "start-levelup": "BOOKS_MODEL=models/book-levelup node ./bin/www"
+    "start-levelup": "BOOKS_MODEL=models/book-levelup node ./bin/www",
+    "sqlite3-setup": "sqlite3 pl.sqlite3 --init models/schema-sqlite3.sql",
+    "start-sqlite3": "SQLITE_FILE=pl.sqlite3 BOOKS_MODEL=models/books-sqlite3 node ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
@@ -21,6 +23,7 @@
     "jquery": "^2.2.4",
     "level": "^1.4.0",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "sqlite3": "^3.1.4"
   }
 }
