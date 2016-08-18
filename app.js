@@ -4,11 +4,29 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var fileStreamRotator = require('file-stream-rotator');
+
+// Uncaught Exceptions
+var error = require('debug')('notes:error');
+process.on('uncaughtException', function(err) {
+  error("I've crashed!!! - " + (err.stack || err));
+});
 
 // Controller definitions
 var routes = require('./routes/index');
 //var users = require('./routes/users');
 var books = require('./routes/books');
+
+var accessLogStream;
+if (process.env.REQUEST_LOG_FILE) {
+  var logDirectory = path.dirname(process.env.REQUEST_LOG_FILE);
+  fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+  accessLogStream = fileStreamRotator.getStream({
+    filename: process.env.REQUEST_LOG_FILE,
+    frequency: 'daily',
+    verbose: false
+  });
+}
 
 var app = express();
 
@@ -18,7 +36,9 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+app.use(logger(process.env.REQUEST_LOG_FORMAT || 'dev', {
+  stream: accessLogStream ? accessLogStream : process.stdout
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -46,7 +66,9 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
+    // util.log(err.message);
     res.status(err.status || 500);
+    error((err.status || 500) + ' ' + error.message);
     res.render('error', {
       message: err.message,
       error: err
@@ -58,6 +80,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
+  error((err.status || 500) + ' ' + error.message);
   res.render('error', {
     message: err.message,
     error: {}
