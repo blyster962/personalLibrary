@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "server1": "PORT=3001 node ./bin/www",
     "server2": "PORT=3002 node ./bin/www",
-    "start-fs": "BOOKS_MODEL=models/book-fs node ./bin/www"
+    "start-fs": "BOOKS_MODEL=models/book-fs node ./bin/www",
+    "start-levelup": "BOOKS_MODEL=models/book-levelup node ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
@@ -18,6 +19,7 @@
     "file-stream-rotator": "0.0.7",
     "fs-extra": "^0.30.0",
     "jquery": "^2.2.4",
+    "level": "^1.4.0",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0"
   }
