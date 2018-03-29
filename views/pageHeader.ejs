@@ -1,7 +1,11 @@
 <header class="page-header">
-<h3>Personal Library</h3>
-
-<% if (typeof hideAddNote === 'undefined') { %>
+<div class="headerTitle">Personal Library</div>
+<% if (user) { %>
+<a class="btn btn-primary" href="/users/logout">Log Out <span class="badge"><%= user.username %></span></a>
+<% } else { %>
+<a class="btn btn-primary" href="/users/login">Log In</a>
+<% } %>
+<% if (user && typeof hideAddBook === 'undefined') { %>
   <a class="btn btn-primary" href="/books/add">ADD Book</a>
 <% } %>
 
@@ -19,5 +23,4 @@
     %>
   </ol>
 <% } %>
-
 </header>

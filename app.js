@@ -14,8 +14,12 @@ process.on('uncaughtException', function(err) {
 
 // Controller definitions
 var routes = require('./routes/index');
-//var users = require('./routes/users');
+var users = require('./routes/users');
 var books = require('./routes/books');
+
+// Enable express session modules
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 
 var accessLogStream;
 if (process.env.REQUEST_LOG_FILE) {
@@ -44,9 +48,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Session handler
+app.use(session({
+  store: new FileStore({ path: "sessions" }),
+  secret: 'keyboard animal',
+  resave: true,
+  saveUninitialized: true
+}));
+users.initPassport(app);
+
 // Controller usage
 app.use('/', routes);
-//app.use('/users', users);
+app.use('/users', users.router);
 app.use('/books', books);
 
 // Vendor scripts
@@ -86,6 +99,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;

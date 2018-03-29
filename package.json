@@ -3,13 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "SEQUELIZE_CONNECT=models/sequelize-sqlite.yaml BOOKS_MODEL=models/books-sequelize USERS_MODEL=models/users-rest USER_SERVICE_URL=http://localhost:3333 node ./bin/www",
     "server1": "PORT=3001 node ./bin/www",
     "server2": "PORT=3002 node ./bin/www",
     "start-fs": "BOOKS_MODEL=models/book-fs node ./bin/www",
     "start-levelup": "BOOKS_MODEL=models/book-levelup node ./bin/www",
     "sqlite3-setup": "sqlite3 pl.sqlite3 --init models/schema-sqlite3.sql",
-    "start-sqlite3": "SQLITE_FILE=pl.sqlite3 BOOKS_MODEL=models/books-sqlite3 node ./bin/www"
+    "start-sqlite3": "SQLITE_FILE=pl.sqlite3 BOOKS_MODEL=models/books-sqlite3 node ./bin/www",
+    "start-sequelize": "SEQUELIZE_CONNECT=models/sequelize-sqlite.yaml BOOKS_MODEL=models/books-sequelize node ./bin/www",
+    "start-sequelize-mysql": "SEQUELIZE_CONNECT=models/sequelize-mysql.yaml BOOKS_MODEL=models/books-sequelize node ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
@@ -18,12 +20,18 @@
     "debug": "~2.2.0",
     "ejs": "~2.4.1",
     "express": "~4.13.4",
+    "express-session": "^1.14.1",
     "file-stream-rotator": "0.0.7",
     "fs-extra": "^0.30.0",
     "jquery": "^2.2.4",
     "level": "^1.4.0",
     "morgan": "~1.7.0",
+    "mysql": "^2.13.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "restify": "^4.1.1",
     "serve-favicon": "~2.3.0",
+    "session-file-store": "^0.2.1",
     "sqlite3": "^3.1.4"
   }
 }

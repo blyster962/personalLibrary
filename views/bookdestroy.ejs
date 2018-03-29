@@ -8,6 +8,7 @@
     <% include pageHeader %>
 
     <div class="row"><div class="col-xs-12">
+    <% if (user) { %>
       <form method='POST' action='/books/destroy/confirm'>
         <input type="hidden" name="bookkey" value='<%= book ? bookkey : "" %>'>
         <p>Delete <%= book.title %>?</p>
@@ -15,6 +16,7 @@
         <input type="submit" value="Delete" />
         <a href="/books/view?key=<%= bookkey %>">Cancel</a>
       </form>
+    <% } else { %><% include not-logged-in %><% } %>
     </div></div>
     <% include footer %>
   </div>
