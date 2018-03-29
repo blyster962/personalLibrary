@@ -1,0 +1,7 @@
+dbname: library
+username: librarian
+password: 17lib00A
+params:
+  host: localhost
+  dialect: 3306
+  storage: mysql

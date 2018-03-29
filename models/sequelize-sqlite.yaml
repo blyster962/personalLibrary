@@ -1,0 +1,6 @@
+dbname: books
+username:
+password:
+params:
+  dialect: sqlite
+  storage: books-sequelize.sqlite3
